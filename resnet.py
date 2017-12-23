@@ -142,7 +142,7 @@ class ResNet152(nn.Module):
         ## Batch*2048
         out = out.view(out.size(0), -1)
         out = self.fc(out)
-        out = f.log_softmax(out, dim=-1)
+        out = f.log_softmax(out)
         return out
     def init_weights(self):
         for m in self.modules():

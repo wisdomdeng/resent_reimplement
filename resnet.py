@@ -26,7 +26,6 @@ class basicLayer(nn.Module):
 
     def forward(self, x):
         ## TODO: Implement preactivation version
-
         if not self.preactivation:
             out = self.relu1(self.bn1(self.conv1(x)))
             out = self.bn2(self.conv2(x))
@@ -42,7 +41,7 @@ class basicLayer(nn.Module):
                 residual = self.conv_project(x)
             else:
                 residual = x
-            return self.relu2(residual+out)
+            return residual+out
 
 
 
@@ -93,7 +92,7 @@ class bottleNeck(nn.Sequential):
                 residual = self.conv_project(x)
             else:
                 residual = x
-            return self.relu3(out+residual)
+            return out+residual
 
 
 class resBlock(nn.Module):
